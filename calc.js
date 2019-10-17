@@ -1,44 +1,28 @@
-var div = document.createElement("div");
-var para = document.createElement("p");
+$(document).ready(function () {
 
+    charlist = ["1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "*", "0", "=", "/", "reset"];
+    opList = ["+", "-", "*", "/"]
 
-document.body.appendChild(div);
-div.appendChild(para);
-charlist = ["1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "*", "0", "=", "/", "reset"];
-opList = ["+", "-", "*", "/"]
+    $("body").html("<div><p></p></div>")
 
-for (let i = 0; i < 16; i++) {
-    var btn = document.createElement("button");
-    btn.innerHTML=charlist[i];
-    div.appendChild(btn);
+    for (let i = 0; i < charlist.length; i++) {
+        $("div").append("<button id=btn" + i + ">" + charlist[i] + "</button>");
 
-    btn.addEventListener("click", function(){
-        if (this.innerHTML == "="){
-            para.innerHTML = eval(para.innerHTML)
-        }
-        else if (this.innerHTML == "reset"){
-            para.innerHTML= ""; 
-        }
-        else if (opList.includes(this.innerHTML) && opList.includes(para.innerHTML[para.innerHTML.length-1])){
-            para.innerHTML += ""
-        }
-        // else if (this.innerHTML=="+" || this.innerHTML=="-" || this.innerHTML=="*" || this.innerHTML=="/"){
-        //     // if (para.innerHTML[para.innerHTML.length-1]=="+" || para.innerHTML[para.innerHTML.length-1]=="-" || para.innerHTML[para.innerHTML.length-1]=="*" || para.innerHTML[para.innerHTML.length-1]=="/"){
-        //     //     para.innerHTML+="";
-        //     // }
-        // }
-          
-        else {
-            this.innerHTML=charlist[i];
-            para.innerHTML += this.innerHTML;
-        }
-    })
-}
+        $("#btn" + i).click(function () {
+            if (this.innerHTML == "=") {
+                $("p").html(eval($("p").html()));
+            }
+            else if (this.innerHTML == "reset") {
+                $("p").html("");
+            }
+            else if (opList.includes($(this).html()) && opList.includes($("p").html()[$("p").html().length-1] )
+            ) {
+                $("p").append("");
+            }
+            else {
+                $("p").append($(this).html());
+            }
+        })
+    }
 
-var buttonEgal = document.getElementsByTagName("button")[13];
-
-buttonEgal.id = "egal";
-
-var buttonReset = document.getElementsByTagName("button")[15];
-
-buttonReset.id = "reset";
+});

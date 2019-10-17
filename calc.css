@@ -10,7 +10,7 @@ div {
     margin: auto;
     width: 28%;
 }
-button:not(#egal):not(#reset){
+button:not(#btn13):not(#btn15){
     width: 25%;
     padding: 1em;
 }
@@ -20,11 +20,11 @@ p {
     padding: 1em;
 }
 
-#egal {
+#btn13 {
     width: 50%;
     padding: 1em;
 }
-#reset {
+#btn15 {
     width: 100%;
     padding: 1em;
 }
